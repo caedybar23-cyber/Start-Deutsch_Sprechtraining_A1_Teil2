@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Start Deutsch 1 - Sprechen Teil 2</title>
+<style>
+  :root{
+    --blue:#b7d4ed;--blue-dark:#184e77;--line:#2f3b44;--orange:#f5b184;
+    --ink:#111827;--muted:#667085;--shadow:0 10px 28px rgba(32,50,70,.12);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#f4f7fb;color:var(--ink);text-rendering:optimizeLegibility}
+  header{padding:20px 28px;background:#fff;border-bottom:1px solid #d8e3ee;position:sticky;top:0;z-index:10}
+  .topline{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  h1{margin:0;font-size:28px}
+  main{max-width:1360px;margin:0 auto;padding:22px 18px 54px}
+  .tabs{display:flex;gap:9px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:thin;margin-bottom:14px}
+  .tab{white-space:nowrap;border:1px solid #b8cad9;background:#fff;border-radius:999px;padding:9px 15px;font-weight:800;cursor:pointer}
+  .tab.active{background:var(--blue-dark);color:#fff;border-color:var(--blue-dark)}
+  .sheet{display:none;background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:22px;margin-bottom:20px}
+  .sheet.active{display:block}
+  .task-head{background:var(--blue);border:2px solid var(--line);padding:12px 14px;font-weight:900;font-size:18px;line-height:1.35;display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+  .points{font-style:italic;text-align:right;white-space:nowrap}
+  .prompt{font-size:17px;line-height:1.72;margin:18px 5px 20px}
+  .candidates{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+  .candidate{border:1px solid #d5dee7;border-radius:16px;padding:14px;background:#fcfdff}
+  .candidate-title{margin-bottom:12px;padding:10px 12px;border-radius:11px;font-weight:900;font-size:17px}
+  .candidate.a .candidate-title{background:#e7f2fb}
+  .candidate.b .candidate-title{background:#fff0e6}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .karte{width:100%;min-height:190px;background:#fff;border:1.5px solid #4a4a4a;display:flex;flex-direction:column;overflow:hidden}
+  .karte-top{display:grid;grid-template-columns:1fr 1fr;background:#787878;color:#fff;font-size:12px;font-weight:800}
+  .karte-top span{padding:5px 7px;border-right:1px solid #5e5e5e}
+  .karte-top span:last-child{border-right:0;background:#ececec;color:#222}
+  .karte-meta{display:flex;justify-content:space-between;gap:8px;background:#efefef;color:#444;font-size:9px;padding:3px 7px;border-bottom:1px solid #aaa}
+  .karte-theme{background:#d7d7d7;text-align:center;font-size:12px;font-weight:800;padding:5px;border-bottom:1px solid #969696}
+  .karte-word{flex:1;display:grid;place-items:center;text-align:center;padding:16px 42px 16px 10px;font-family:Georgia,"Times New Roman",serif;font-size:27px;font-weight:700;line-height:1.08;position:relative;overflow-wrap:anywhere;word-break:normal}
+  .card-help-toggle{position:absolute;right:8px;bottom:8px;width:31px;height:31px;border:1px solid #d7b24b;border-radius:50%;background:#fff8d8;display:grid;place-items:center;font-size:17px;line-height:1;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.10)}
+  .card-help-toggle:hover,.card-help-toggle[aria-expanded="true"]{background:#ffed9e}
+  .card-help{border-top:1px solid #d9e1e8;background:#f8fbff;padding:10px 12px;font-family:"Segoe UI",Arial,Helvetica,sans-serif;font-size:14px;line-height:1.48;text-align:left}
+  .card-help[hidden]{display:none}
+  .card-help .q{color:#184e77;margin-bottom:5px}.card-help .a{color:#344054}
+  details{margin-top:18px;border:1px solid #cbd8e5;border-radius:14px;background:#f8fbff;overflow:hidden}
+  summary{cursor:pointer;padding:14px 16px;font-weight:900;color:#173f61;background:#eef6ff}
+  .inside{padding:16px;line-height:1.6}
+  .help-section{margin-bottom:18px}
+  .help-section:last-child{margin-bottom:0}
+  .help-section h3{margin:0 0 8px;font-size:16px;color:var(--blue-dark)}
+  .help-box{background:#fff;border:1px solid #dbe5ee;border-radius:11px;padding:11px 13px}
+  .formula-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .formula{background:#fff;border:1px solid #dbe5ee;border-radius:10px;padding:10px 12px}
+  .formula b{display:block;color:var(--blue-dark);margin-bottom:4px}
+  .w-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:10px}
+  .w-item{background:#fff;border:1px solid #dbe5ee;border-radius:10px;padding:9px 11px;line-height:1.45}
+  .w-item b{color:var(--blue-dark)}
+  .w-vn{color:#344054;font-weight:700}
+  .w-example{display:block;margin-top:3px;color:#667085;font-size:14px}
+  .btn{border:0;border-radius:10px;background:var(--blue-dark);color:#fff;font-weight:800;padding:10px 14px;cursor:pointer}
+  .btn.print{background:#344054}
+  @media(max-width:930px){.candidates{grid-template-columns:1fr}.sheet{padding:16px}.cards{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){header{padding:16px}.topline{align-items:flex-start}.topline .btn{padding:8px 10px}.cards,.formula-grid{grid-template-columns:1fr}.karte{min-height:175px}.task-head{font-size:16px}.prompt{font-size:16px}}
+  @media print{
+    body{background:#fff}header,.tabs,details{display:none!important}
+    main{max-width:none;padding:0}.sheet{display:none!important;box-shadow:none;border-radius:0;padding:0}.sheet.active{display:block!important}
+    .candidate{break-inside:avoid}.karte{break-inside:avoid;min-height:170px}.candidates{gap:14px}.card-help-toggle,.card-help{display:none!important}
+    .task-head{background:#d8e8f5!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="topline">
+    <h1>Start Deutsch 1 - Sprechen Teil 2</h1>
+    <button class="btn print" type="button" onclick="window.print()">In / PDF</button>
+  </div>
+</header>
+<main>
+  <div class="tabs" id="tabs" aria-label="Danh sách đề"></div>
+  <div id="sets"></div>
+</main>
+<script>
+const THEME_CARDS = {
+  "Beruf":["Arbeitszeit","Kollegen","Spaß","Pause","Arbeitsplatz","Aufgaben"],
+  "Wochenende":["Sonntag","Frühstück","Sport","Familie","Ausflug","Bücher"],
+  "Sport":["Lieblingssport","schwimmen","Wochenende","Abend","Ball","Fahrrad"],
+  "Schule":["Freunde","Lehrer","Computer","Sprachen","Essen","Hausaufgaben"],
+  "Reisen":["Hotel","Zug","Berge","Reisebüro","Meer","Urlaub"],
+  "Lernen":["Wörterbuch","Computerkurs","Internet","Freunde","Radio","Lehrerin"],
+  "Einkaufen":["Zeitung","Kasse","Obst","Schuhe","Buch","Stadtplan","Supermarkt","kaufen","Saft"],
+  "Stadt":["Schule","Taxi","S-Bahn","Post","Buchladen","schließen","Kirche","Rathaus","Museum"],
+  "Freizeit":["Fußball","Computer spielen","kochen","Ins Kino gehen","Tennis spielen","fernsehen","tanzen","Buch lesen","Musik hören"]
+};
+
+const EXAMPLES = {
+  "Arbeitszeit":["Wann arbeiten Sie?","Ich arbeite von Montag bis Freitag, von 8 bis 17 Uhr."],
+  "Kollegen":["Wie viele Kollegen haben Sie?","Ich habe fünf Kollegen. Wir arbeiten im selben Büro."],
+  "Spaß":["Macht Ihnen Ihre Arbeit Spaß?","Ja, meine Arbeit macht mir Spaß. Ich arbeite gern mit Menschen."],
+  "Pause":["Wann machen Sie Mittagspause?","Ich mache um 12 Uhr Mittagspause."],
+  "Arbeitsplatz":["Wo arbeiten Sie?","Ich arbeite in einem Büro in der Innenstadt."],
+  "Aufgaben":["Was machen Sie bei der Arbeit?","Ich schreibe E-Mails und telefoniere mit Kunden."],
+
+  "Sonntag":["Was machen Sie am Sonntag?","Am Sonntag schlafe ich länger und treffe Freunde."],
+  "Frühstück":["Was frühstücken Sie am Wochenende?","Am Wochenende esse ich Brot mit Ei und trinke Kaffee."],
+  "Sport@Wochenende":["Machen Sie am Wochenende Sport?","Ja, ich spiele samstags mit Freunden Fußball."],
+  "Familie":["Was machen Sie mit Ihrer Familie am Wochenende?","Am Wochenende koche ich mit meiner Familie und wir essen zusammen."],
+  "Ausflug":["Machen Sie am Wochenende gern Ausflüge?","Ja, wir fahren oft an einen See oder aufs Land."],
+  "Bücher":["Welche Bücher lesen Sie gern?","Ich lese gern Krimis, meistens am Sonntagabend."],
+
+  "Lieblingssport":["Was ist Ihr Lieblingssport?","Mein Lieblingssport ist Fußball."],
+  "schwimmen":["Wie oft gehen Sie schwimmen?","Ich gehe einmal pro Woche schwimmen."],
+  "Wochenende@Sport":["Machen Sie am Wochenende Sport?","Ja, ich fahre sonntags oft mit dem Fahrrad."],
+  "Abend":["Machen Sie abends Sport?","Ja, ich gehe zweimal pro Woche nach der Arbeit joggen."],
+  "Ball":["Spielen Sie gern Fußball?","Ja, ich spiele jeden Samstag mit Freunden Fußball."],
+  "Fahrrad":["Fahren Sie oft Fahrrad?","Ja, ich fahre fast jeden Tag mit dem Fahrrad zur Arbeit."],
+
+  "Freunde@Schule":["Treffen Sie Ihre Freunde auch nach der Schule?","Ja, wir treffen uns oft nachmittags im Café."],
+  "Lehrer":["Wie finden Sie Ihren Lehrer?","Ich finde ihn nett. Er erklärt sehr gut."],
+  "Computer@Schule":["Benutzen Sie in der Schule einen Computer?","Ja, wir schreiben Texte und machen Übungen am Computer."],
+  "Sprachen":["Welche Sprachen lernen Sie in der Schule?","Ich lerne Deutsch und Englisch."],
+  "Essen":["Wo essen Sie in der Schule?","Ich esse mittags in der Kantine."],
+  "Hausaufgaben":["Wann machen Sie Ihre Hausaufgaben?","Ich mache meine Hausaufgaben nach dem Abendessen."],
+
+  "Hotel":["Buchen Sie im Urlaub ein Hotel?","Ja, meistens buche ich ein kleines Hotel in der Nähe vom Zentrum."],
+  "Zug":["Fahren Sie gern mit dem Zug?","Ja, bei längeren Reisen fahre ich gern mit dem Zug. Das ist bequem."],
+  "Berge":["Fahren Sie gern in die Berge?","Ja, im Sommer fahre ich gern in die Berge. Dort wandere ich gern."],
+  "Reisebüro":["Buchen Sie Reisen im Reisebüro oder im Internet?","Ich buche Reisen meistens im Internet, aber manchmal gehe ich ins Reisebüro."],
+  "Meer":["Fahren Sie im Urlaub gern ans Meer?","Ja, im Sommer fahre ich gern eine Woche ans Meer."],
+  "Urlaub":["Wo machen Sie am liebsten Urlaub?","Ich mache am liebsten am Meer Urlaub, zum Beispiel in Italien."],
+
+  "Wörterbuch":["Benutzen Sie beim Deutschlernen ein Wörterbuch?","Ja, ich suche dort neue Wörter."],
+  "Computerkurs":["Wann haben Sie Ihren Computerkurs?","Ich habe dienstags von 18 bis 20 Uhr Computerkurs."],
+  "Internet":["Benutzen Sie das Internet zum Lernen?","Ja, ich mache online Übungen und schaue kurze Videos."],
+  "Freunde@Lernen":["Lernen Sie manchmal mit Freunden?","Ja, freitags lernen wir zusammen in der Bibliothek."],
+  "Radio":["Hören Sie deutsches Radio?","Ja, ich höre morgens auf dem Weg zur Arbeit etwa zehn Minuten deutsches Radio."],
+  "Lehrerin":["Wie finden Sie Ihre Lehrerin?","Ich finde sie nett. Sie erklärt sehr gut."],
+
+  "Zeitung":["Kaufen Sie oft eine Zeitung?","Nein, ich kaufe selten eine Zeitung. Ich lese die Nachrichten meistens im Internet."],
+  "Kasse":["Wie bezahlen Sie an der Kasse?","Ich bezahle meistens mit Karte."],
+  "Obst":["Welches Obst kaufen Sie gern?","Ich kaufe gern Äpfel und Bananen."],
+  "Schuhe":["Wo kaufen Sie normalerweise Schuhe?","Ich kaufe Schuhe meistens im Einkaufszentrum. Dort kann ich sie anprobieren."],
+  "Buch":["Wo kaufen Sie Bücher?","Ich kaufe Bücher meistens im Buchladen in der Innenstadt oder online."],
+  "Stadtplan":["Brauchen Sie auf Reisen manchmal einen Stadtplan?","Ja, in einer neuen Stadt benutze ich manchmal einen Stadtplan."],
+  "Supermarkt":["Wie oft gehen Sie in den Supermarkt?","Ich gehe zwei- oder dreimal pro Woche in den Supermarkt."],
+  "kaufen":["Was kaufen Sie jede Woche?","Ich kaufe jede Woche Obst, Gemüse, Milch und Brot."],
+  "Saft":["Welchen Saft kaufen Sie am liebsten?","Am liebsten kaufe ich Orangensaft."],
+
+  "Schule@Stadt":["Wo ist Ihre Schule?","Meine Schule ist in der Nähe vom Bahnhof."],
+  "Taxi":["Wann nehmen Sie ein Taxi?","Ich nehme ein Taxi, wenn es spät ist oder ich viel Gepäck habe."],
+  "S-Bahn":["Fahren Sie oft mit der S-Bahn?","Ja, ich fahre jeden Morgen mit der S-Bahn zur Arbeit."],
+  "Post":["Gehen Sie oft zur Post?","Nein, nur ein- oder zweimal im Monat."],
+  "Buchladen":["Gibt es in Ihrer Nähe einen Buchladen?","Ja, in der Hauptstraße gibt es einen Buchladen, etwa fünf Minuten zu Fuß von hier."],
+  "schließen":["Wann schließen die Geschäfte bei Ihnen?","Die meisten Geschäfte schließen um 20 Uhr."],
+  "Kirche":["Gibt es in Ihrer Stadt eine alte Kirche?","Ja, im Zentrum neben dem Marktplatz gibt es eine alte Kirche."],
+  "Rathaus":["Wo ist das Rathaus?","Das Rathaus ist direkt am Marktplatz, gegenüber dem Museum."],
+  "Museum":["Gehen Sie manchmal ins Museum?","Ja, ich gehe ungefähr einmal im Monat ins Museum."],
+
+  "Fußball":["Spielen Sie Fußball?","Ja, ich spiele samstags mit Freunden im Park Fußball."],
+  "Computer spielen":["Wie oft spielen Sie Computerspiele?","Ich spiele zwei- oder dreimal pro Woche, meistens abends."],
+  "kochen":["Kochen Sie oft?","Ja, ich koche fast jeden Abend. Besonders gern koche ich Reisgerichte."],
+  "Ins Kino gehen":["Wie oft gehen Sie ins Kino?","Ich gehe ungefähr einmal im Monat ins Kino."],
+  "Tennis spielen":["Spielen Sie Tennis?","Ja, ich spiele jeden Mittwoch mit einem Freund Tennis."],
+  "fernsehen":["Was schauen Sie gern im Fernsehen?","Ich schaue gern Filme und manchmal die Nachrichten."],
+  "tanzen":["Gehen Sie gern tanzen?","Ja, ich gehe am Wochenende manchmal mit Freunden tanzen."],
+  "Buch lesen":["Wann lesen Sie Bücher?","Ich lese meistens abends vor dem Schlafengehen."],
+  "Musik hören":["Welche Musik hören Sie gern?","Ich höre gern Popmusik, besonders beim Kochen."]
+};
+
+const SETS = [
+  {aTheme:"Beruf",      bTheme:"Wochenende", aStart:0, bStart:0},
+  {aTheme:"Sport",      bTheme:"Schule",     aStart:0, bStart:0},
+  {aTheme:"Reisen",     bTheme:"Lernen",     aStart:0, bStart:0},
+  {aTheme:"Einkaufen",  bTheme:"Freizeit",   aStart:0, bStart:0}
+].map((s,i)=>({...s,label:`Test ${i+1} · ${s.aTheme} / ${s.bTheme}`}));
+
+function takeCards(theme,start){
+  const pool=THEME_CARDS[theme];
+  return Array.from({length:6},(_,i)=>pool[(start+i)%pool.length]);
+}
+
+function exampleFor(theme,word){
+  return EXAMPLES[`${word}@${theme}`] || EXAMPLES[word] || ["Bilden Sie eine Frage mit dieser Karte.","Antworten Sie in einem einfachen A1-Satz."];
+}
+
+function cardHtml(theme,word,idx){
+  const [q,a]=exampleFor(theme,word);
+  return `<div class="karte" aria-label="Karte ${word}">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz ${String(idx+1).padStart(2,'0')}</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: ${theme}</div>
+    <div class="karte-word">
+      <span>${word}</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte ${word}" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden>
+      <div class="q"><b>Frage:</b> ${q}</div>
+      <div class="a"><b>Antwort:</b> ${a}</div>
+    </div>
+  </div>`;
+}
+
+function candidateHtml(candidate,theme,words){
+  return `<section class="candidate ${candidate.toLowerCase()}">
+    <div class="candidate-title">Kandidat ${candidate} · Thema: ${theme}</div>
+    <div class="cards">${words.map((w,i)=>cardHtml(theme,w,i)).join('')}</div>
+  </section>`;
+}
+
+function hintHtml(set,aWords,bWords){
+  return `<details>
+    <summary>Hinweis – Gợi ý &amp; hỗ trợ</summary>
+    <div class="inside">
+      <section class="help-section">
+        <h3>Dịch đề bài</h3>
+        <div class="help-box">Bạn có <b>6 thẻ</b>. Hãy <b>chọn 4 thẻ</b> để hỏi bạn cùng thi. Với mỗi thẻ đã chọn, hãy đặt <b>1 câu hỏi</b> và nghe câu trả lời. Sau đó, hãy trả lời <b>4 câu hỏi</b> của bạn cùng thi. Kandidat A và Kandidat B dùng <b>hai chủ đề khác nhau</b>.</div>
+      </section>
+      <section class="help-section">
+        <h3>Cấu trúc câu hỏi A1</h3>
+        <div class="formula-grid">
+          <div class="formula"><b>W-Frage</b>Wo / Wann / Was / Wie / Wie oft / Welche ... + Verb + Sie ...?</div>
+          <div class="formula"><b>Ja/Nein-Frage</b>Verb + Sie + ...?<br>Ví dụ: Fahren Sie gern mit dem Zug?</div>
+        </div>
+        <div class="help-box" style="margin-top:10px">
+          <b style="color:var(--blue-dark)">Các từ để hỏi thường gặp</b>
+          <div class="w-grid">
+            <div class="w-item"><b>Wie</b> – <span class="w-vn">như thế nào?</span><span class="w-example">Ví dụ: Wie geht es Ihnen?</span></div>
+            <div class="w-item"><b>Was</b> – <span class="w-vn">cái gì? / gì?</span><span class="w-example">Ví dụ: Was machen Sie am Wochenende?</span></div>
+            <div class="w-item"><b>Wo</b> – <span class="w-vn">ở đâu?</span><span class="w-example">Ví dụ: Wo wohnen Sie?</span></div>
+            <div class="w-item"><b>Woher</b> – <span class="w-vn">từ đâu?</span><span class="w-example">Ví dụ: Woher kommen Sie?</span></div>
+            <div class="w-item"><b>Wohin</b> – <span class="w-vn">đi đâu? / đến đâu?</span><span class="w-example">Ví dụ: Wohin fahren Sie im Urlaub?</span></div>
+            <div class="w-item"><b>Wann</b> – <span class="w-vn">khi nào?</span><span class="w-example">Ví dụ: Wann machen Sie Ihre Hausaufgaben?</span></div>
+            <div class="w-item"><b>Wie oft</b> – <span class="w-vn">bao lâu một lần? / thường xuyên thế nào?</span><span class="w-example">Ví dụ: Wie oft gehen Sie schwimmen?</span></div>
+            <div class="w-item"><b>Wie viel</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ không đếm được hoặc hỏi giá. Ví dụ: Wie viel kostet das?</span></div>
+            <div class="w-item"><b>Wie viele</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ số nhiều đếm được. Ví dụ: Wie viele Kinder haben Sie?</span></div>
+            <div class="w-item"><b>Warum</b> – <span class="w-vn">tại sao?</span><span class="w-example">Ví dụ: Warum lernen Sie Deutsch?</span></div>
+            <div class="w-item"><b>Welche / Welcher / Welches</b> – <span class="w-vn">cái nào? / những ... nào?</span><span class="w-example">Ví dụ: Welche Sprachen lernen Sie?</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </details>`;
+}
+
+function setHtml(set,index){
+  const aWords=takeCards(set.aTheme,set.aStart);
+  const bWords=takeCards(set.bTheme,set.bStart);
+  return `<section class="sheet ${index===0?'active':''}" id="set${index}">
+    <div class="task-head">
+      <div>Sprechen Teil 2<br>Um Informationen bitten und Informationen geben.</div>
+      <div class="points">(ca. 3 Min.)</div>
+    </div>
+    <p class="prompt"><b>Sie haben sechs Karten. Wählen Sie vier Karten aus.</b> Stellen Sie zu jeder ausgewählten Karte eine Frage und beantworten Sie vier Fragen Ihres Partners / Ihrer Partnerin.</p>
+    <div class="candidates">
+      ${candidateHtml('A',set.aTheme,aWords)}
+      ${candidateHtml('B',set.bTheme,bWords)}
+    </div>
+    ${hintHtml(set,aWords,bWords)}
+  </section>`;
+}
+
+function toggleCardHelp(button){
+  const card=button.closest('.karte');
+  const help=card.querySelector('.card-help');
+  const willOpen=help.hasAttribute('hidden');
+  if(willOpen){
+    help.removeAttribute('hidden');
+  }else{
+    help.setAttribute('hidden','');
+  }
+  button.setAttribute('aria-expanded',String(willOpen));
+}
+
+function render(){
+  document.getElementById('tabs').innerHTML=SETS.map((s,i)=>`<button class="tab ${i===0?'active':''}" type="button" onclick="showSet(${i})">${s.label}</button>`).join('');
+  document.getElementById('sets').innerHTML=SETS.map(setHtml).join('');
+}
+
+function showSet(i){
+  document.querySelectorAll('.sheet').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  document.querySelectorAll('.tab').forEach((el,idx)=>el.classList.toggle('active',idx===i));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+render();
+</script>
+</body>
+</html>
