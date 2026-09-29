@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="vi"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Start Deutsch 1 - Sprechen Teil 2</title>
 <style>
   :root{
@@ -58,6 +57,12 @@
   .w-example{display:block;margin-top:3px;color:#667085;font-size:14px}
   .btn{border:0;border-radius:10px;background:var(--blue-dark);color:#fff;font-weight:800;padding:10px 14px;cursor:pointer}
   .btn.print{background:#344054}
+  .top-actions{display:flex;gap:8px;align-items:center}
+  .btn.edit{background:#8a4b08}
+  .btn.edit.active{background:#166534}
+  .btn.export{background:#166534}
+  .editing [contenteditable="true"]{outline:2px dashed #d97706;outline-offset:2px;background:#fffdf3}
+  .editing .karte-word > span[contenteditable="true"]{padding:2px 5px;border-radius:4px}
   @media(max-width:930px){.candidates{grid-template-columns:1fr}.sheet{padding:16px}.cards{grid-template-columns:1fr 1fr}}
   @media(max-width:560px){header{padding:16px}.topline{align-items:flex-start}.topline .btn{padding:8px 10px}.cards,.formula-grid{grid-template-columns:1fr}.karte{min-height:175px}.task-head{font-size:16px}.prompt{font-size:16px}}
   @media print{
@@ -68,16 +73,774 @@
   }
 </style>
 </head>
-<body>
+<body class="">
 <header>
   <div class="topline">
-    <h1>Start Deutsch 1 - Sprechen Teil 2</h1>
-    <button class="btn print" type="button" onclick="window.print()">In / PDF</button>
+    <h1 id="pageTitle">Start Deutsch 1 - Sprechen Teil 2</h1>
+    <div class="top-actions">
+      <button class="btn edit" id="editBtn" type="button" onclick="toggleEditMode()">Bearbeiten</button>
+      <button class="btn export" type="button" onclick="exportHtml()" aria-label="HTML exportieren" title="HTML exportieren" style="display:inline-grid;place-items:center;width:42px;height:42px;padding:0">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v12"></path>
+          <path d="m7 10 5 5 5-5"></path>
+          <path d="M5 21h14"></path>
+        </svg>
+      </button>
+      <button class="btn print" type="button" onclick="window.print()">In / PDF</button>
+    </div>
   </div>
 </header>
 <main>
-  <div class="tabs" id="tabs" aria-label="Danh sách đề"></div>
-  <div id="sets"></div>
+  <div class="tabs" id="tabs" aria-label="Danh sách đề"><button class="tab active" type="button" onclick="showSet(0)">Test 1 · Beruf / Wochenende</button><button class="tab " type="button" onclick="showSet(1)">Test 2 · Sport / Schule</button><button class="tab " type="button" onclick="showSet(2)">Test 3 · Reisen / Lernen</button><button class="tab " type="button" onclick="showSet(3)">Test 4 · Einkaufen / Freizeit</button></div>
+  <div id="sets"><section class="sheet active" id="set0">
+    <div class="task-head">
+      <div>Sprechen Teil 2<br>Um Informationen bitten und Informationen geben.</div>
+      <div class="points">(ca. 5 Min.)</div>
+    </div>
+    <div class="candidates">
+      <section class="candidate a">
+    <div class="candidate-title">Thema: Beruf</div>
+    <div class="cards"><div class="karte" aria-label="Karte Arbeitszeit">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 01</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Beruf</div>
+    <div class="karte-word">
+      <span>Arbeitszeit</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Arbeitszeit" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wann arbeitest du?</div>
+      <div class="a"><b>Antwort:</b> Ich arbeite von Montag bis Freitag, von 8 bis 17 Uhr.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Kollegen">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 02</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Beruf</div>
+    <div class="karte-word">
+      <span>Kollegen</span>
+      <button class="card-help-toggle" type="button" aria-expanded="true" aria-label="Gợi ý cho Karte Kollegen" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help">
+      <div class="q"><b>Frage:</b> Sind deine Kollegen nett?</div>
+      <div class="a"><b>Antwort:</b> Ja, meine Kollegen sind sehr nett, sympathisch und hilfsbereit. Wir arbeiten zusammen in einem Büro in Hanoi.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Spaß">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 03</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Beruf</div>
+    <div class="karte-word">
+      <span>Spaß</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Spaß" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Macht dir deine Arbeit Spaß?</div>
+      <div class="a"><b>Antwort:</b> Ja, meine Arbeit macht mir Spaß. Ich arbeite gern mit Menschen.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Pause">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 04</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Beruf</div>
+    <div class="karte-word">
+      <span>Pause</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Pause" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wann machst du Mittagspause?</div>
+      <div class="a"><b>Antwort:</b> Ich mache um 12 Uhr Mittagspause.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Arbeitsplatz">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 05</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Beruf</div>
+    <div class="karte-word">
+      <span>Arbeitsplatz</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Arbeitsplatz" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wo arbeitest du?</div>
+      <div class="a"><b>Antwort:</b> Ich arbeite in einem Büro in der Innenstadt.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Aufgaben">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 06</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Beruf</div>
+    <div class="karte-word">
+      <span>Aufgaben</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Aufgaben" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Was machst du bei der Arbeit?</div>
+      <div class="a"><b>Antwort:</b> Ich schreibe E-Mails und telefoniere mit Kunden.</div>
+    </div>
+  </div></div>
+  </section>
+      <section class="candidate b">
+    <div class="candidate-title">Thema: Wochenende</div>
+    <div class="cards"><div class="karte" aria-label="Karte Sonntag">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 01</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Wochenende</div>
+    <div class="karte-word">
+      <span>Sonntag</span>
+      <button class="card-help-toggle" type="button" aria-expanded="true" aria-label="Gợi ý cho Karte Sonntag" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help">
+      <div class="q"><b>Frage:</b> Was machst du am Sonntag?</div>
+      <div class="a"><b>Antwort:</b> Am Sonntag schlafe ich lange und treffe Freunde.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Frühstück">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 02</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Wochenende</div>
+    <div class="karte-word">
+      <span>Frühstück</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Frühstück" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Was frühstückst du am Wochenende?</div>
+      <div class="a"><b>Antwort:</b> Am Wochenende esse ich Brot mit Ei und trinke Kaffee.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Sport">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 03</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Wochenende</div>
+    <div class="karte-word">
+      <span>Sport</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Sport" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Machst du am Wochenende Sport?</div>
+      <div class="a"><b>Antwort:</b> Ja, ich spiele am Samstag mit Freunden Fußball.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Familie">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 04</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Wochenende</div>
+    <div class="karte-word">
+      <span>Familie</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Familie" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Was machst du mit deiner Familie am Wochenende?</div>
+      <div class="a"><b>Antwort:</b> Am Wochenende koche ich mit meiner Familie und wir essen zusammen.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Ausflug">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 05</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Wochenende</div>
+    <div class="karte-word">
+      <span>Ausflug</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Ausflug" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Machst du gern am Wochenende einen Ausflug?</div>
+      <div class="a"><b>Antwort:</b> Ja, ich mache am Wochenende gern einen Ausflug mit dem Auto, zusammen mit meiner Freundin Sylvia.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Bücher">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 06</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Wochenende</div>
+    <div class="karte-word">
+      <span>Bücher</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Bücher" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Was liest du gern?</div>
+      <div class="a"><b>Antwort:</b> Ich lese gern Krimis und Comics.</div>
+    </div>
+  </div></div>
+  </section>
+    </div>
+    <details open="">
+    <summary>Hinweis – Gợi ý &amp; hỗ trợ</summary>
+    <div class="inside">
+      <section class="help-section">
+        <h3>Cấu trúc câu hỏi A1</h3>
+        <div class="formula-grid">
+          <div class="formula"><b>W-Frage</b>Wo / Wann / Was / Wie / Wie oft / Welche ... + Verb + du ...?</div>
+          <div class="formula"><b>Ja/Nein-Frage</b>Verb + du + ...?<br>Ví dụ: Fährst du gern mit dem Zug?</div>
+        </div>
+        <div class="help-box" style="margin-top:10px">
+          <b style="color:var(--blue-dark)">Các từ để hỏi thường gặp</b>
+          <div class="w-grid">
+            <div class="w-item"><b>Wie</b> – <span class="w-vn">như thế nào?</span><span class="w-example">Ví dụ: Wie geht es dir?</span></div>
+            <div class="w-item"><b>Was</b> – <span class="w-vn">cái gì? / gì?</span><span class="w-example">Ví dụ: Was machst du am Wochenende?</span></div>
+            <div class="w-item"><b>Wo</b> – <span class="w-vn">ở đâu?</span><span class="w-example">Ví dụ: Wo wohnst du?</span></div>
+            <div class="w-item"><b>Woher</b> – <span class="w-vn">từ đâu?</span><span class="w-example">Ví dụ: Woher kommst du?</span></div>
+            <div class="w-item"><b>Wohin</b> – <span class="w-vn">đi đâu? / đến đâu?</span><span class="w-example">Ví dụ: Wohin fährst du im Urlaub?</span></div>
+            <div class="w-item"><b>Wann</b> – <span class="w-vn">khi nào?</span><span class="w-example">Ví dụ: Wann machst du deine Hausaufgaben?</span></div>
+            <div class="w-item"><b>Wie oft</b> – <span class="w-vn">bao lâu một lần? / thường xuyên thế nào?</span><span class="w-example">Ví dụ: Wie oft gehst du schwimmen?</span></div>
+            <div class="w-item"><b>Wie viel</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ không đếm được hoặc hỏi giá. Ví dụ: Wie viel kostet das?</span></div>
+            <div class="w-item"><b>Wie viele</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ số nhiều đếm được. Ví dụ: Wie viele Geschwister hast du?</span></div>
+            <div class="w-item"><b>Warum</b> – <span class="w-vn">tại sao?</span><span class="w-example">Ví dụ: Warum lernst du Deutsch?</span></div>
+            <div class="w-item"><b>Welche / Welcher / Welches</b> – <span class="w-vn">cái nào? / những ... nào?</span><span class="w-example">Ví dụ: Welche Sprachen lernst du?</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </details>
+  </section><section class="sheet " id="set1">
+    <div class="task-head">
+      <div>Sprechen Teil 2<br>Um Informationen bitten und Informationen geben.</div>
+      <div class="points">(ca. 5 Min.)</div>
+    </div>
+    <div class="candidates">
+      <section class="candidate a">
+    <div class="candidate-title">Thema: Sport</div>
+    <div class="cards"><div class="karte" aria-label="Karte Lieblingssport">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 01</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Sport</div>
+    <div class="karte-word">
+      <span>Lieblingssport</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Lieblingssport" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Was ist dein Lieblingssport?</div>
+      <div class="a"><b>Antwort:</b> Mein Lieblingssport ist Fußball.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte schwimmen">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 02</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Sport</div>
+    <div class="karte-word">
+      <span>schwimmen</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte schwimmen" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wie oft gehst du schwimmen?</div>
+      <div class="a"><b>Antwort:</b> Ich gehe einmal pro Woche schwimmen.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Wochenende">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 03</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Sport</div>
+    <div class="karte-word">
+      <span>Wochenende</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Wochenende" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Machst du am Wochenende Sport?</div>
+      <div class="a"><b>Antwort:</b> Ja, ich fahre am Sonntag oft mit dem Fahrrad.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Abend">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 04</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Sport</div>
+    <div class="karte-word">
+      <span>Abend</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Abend" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Machst du am Abend Sport?</div>
+      <div class="a"><b>Antwort:</b> Ja, ich gehe zweimal pro Woche nach der Arbeit joggen.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Ball">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 05</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Sport</div>
+    <div class="karte-word">
+      <span>Ball</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Ball" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Spielst du gern Fußball?</div>
+      <div class="a"><b>Antwort:</b> Ja, ich spiele jeden Samstag mit Freunden Fußball.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Fahrrad">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 06</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Sport</div>
+    <div class="karte-word">
+      <span>Fahrrad</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Fahrrad" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Fährst du oft Fahrrad?</div>
+      <div class="a"><b>Antwort:</b> Ja, ich fahre fast jeden Tag mit dem Fahrrad zur Arbeit.</div>
+    </div>
+  </div></div>
+  </section>
+      <section class="candidate b">
+    <div class="candidate-title">Thema: Schule</div>
+    <div class="cards"><div class="karte" aria-label="Karte Freunde">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 01</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Schule</div>
+    <div class="karte-word">
+      <span>Freunde</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Freunde" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Triffst du deine Freunde auch nach der Schule?</div>
+      <div class="a"><b>Antwort:</b> Ja, wir treffen uns oft nachmittags im Café.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Lehrer">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 02</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Schule</div>
+    <div class="karte-word">
+      <span>Lehrer</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Lehrer" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wie findest du deinen Lehrer?</div>
+      <div class="a"><b>Antwort:</b> Ich finde ihn nett. Er erklärt sehr gut.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Computer">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 03</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Schule</div>
+    <div class="karte-word">
+      <span>Computer</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Computer" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Benutzt du in der Schule einen Computer?</div>
+      <div class="a"><b>Antwort:</b> Ja, wir schreiben Texte und machen Übungen am Computer.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Sprachen">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 04</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Schule</div>
+    <div class="karte-word">
+      <span>Sprachen</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Sprachen" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Welche Sprachen lernst du in der Schule?</div>
+      <div class="a"><b>Antwort:</b> Ich lerne Deutsch und Englisch.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Essen">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 05</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Schule</div>
+    <div class="karte-word">
+      <span>Essen</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Essen" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wo isst du in der Schule?</div>
+      <div class="a"><b>Antwort:</b> Ich esse mittags in der Kantine.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Hausaufgaben">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 06</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Schule</div>
+    <div class="karte-word">
+      <span>Hausaufgaben</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Hausaufgaben" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wann machst du deine Hausaufgaben?</div>
+      <div class="a"><b>Antwort:</b> Ich mache meine Hausaufgaben nach dem Abendessen.</div>
+    </div>
+  </div></div>
+  </section>
+    </div>
+    <details>
+    <summary>Hinweis – Gợi ý &amp; hỗ trợ</summary>
+    <div class="inside">
+      <section class="help-section">
+        <h3>Cấu trúc câu hỏi A1</h3>
+        <div class="formula-grid">
+          <div class="formula"><b>W-Frage</b>Wo / Wann / Was / Wie / Wie oft / Welche ... + Verb + du ...?</div>
+          <div class="formula"><b>Ja/Nein-Frage</b>Verb + du + ...?<br>Ví dụ: Fährst du gern mit dem Zug?</div>
+        </div>
+        <div class="help-box" style="margin-top:10px">
+          <b style="color:var(--blue-dark)">Các từ để hỏi thường gặp</b>
+          <div class="w-grid">
+            <div class="w-item"><b>Wie</b> – <span class="w-vn">như thế nào?</span><span class="w-example">Ví dụ: Wie geht es dir?</span></div>
+            <div class="w-item"><b>Was</b> – <span class="w-vn">cái gì? / gì?</span><span class="w-example">Ví dụ: Was machst du am Wochenende?</span></div>
+            <div class="w-item"><b>Wo</b> – <span class="w-vn">ở đâu?</span><span class="w-example">Ví dụ: Wo wohnst du?</span></div>
+            <div class="w-item"><b>Woher</b> – <span class="w-vn">từ đâu?</span><span class="w-example">Ví dụ: Woher kommst du?</span></div>
+            <div class="w-item"><b>Wohin</b> – <span class="w-vn">đi đâu? / đến đâu?</span><span class="w-example">Ví dụ: Wohin fährst du im Urlaub?</span></div>
+            <div class="w-item"><b>Wann</b> – <span class="w-vn">khi nào?</span><span class="w-example">Ví dụ: Wann machst du deine Hausaufgaben?</span></div>
+            <div class="w-item"><b>Wie oft</b> – <span class="w-vn">bao lâu một lần? / thường xuyên thế nào?</span><span class="w-example">Ví dụ: Wie oft gehst du schwimmen?</span></div>
+            <div class="w-item"><b>Wie viel</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ không đếm được hoặc hỏi giá. Ví dụ: Wie viel kostet das?</span></div>
+            <div class="w-item"><b>Wie viele</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ số nhiều đếm được. Ví dụ: Wie viele Geschwister hast du?</span></div>
+            <div class="w-item"><b>Warum</b> – <span class="w-vn">tại sao?</span><span class="w-example">Ví dụ: Warum lernst du Deutsch?</span></div>
+            <div class="w-item"><b>Welche / Welcher / Welches</b> – <span class="w-vn">cái nào? / những ... nào?</span><span class="w-example">Ví dụ: Welche Sprachen lernst du?</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </details>
+  </section><section class="sheet " id="set2">
+    <div class="task-head">
+      <div>Sprechen Teil 2<br>Um Informationen bitten und Informationen geben.</div>
+      <div class="points">(ca. 5 Min.)</div>
+    </div>
+    <div class="candidates">
+      <section class="candidate a">
+    <div class="candidate-title">Thema: Reisen</div>
+    <div class="cards"><div class="karte" aria-label="Karte Hotel">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 01</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Reisen</div>
+    <div class="karte-word">
+      <span>Hotel</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Hotel" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Buchst du im Urlaub ein Hotel?</div>
+      <div class="a"><b>Antwort:</b> Ja, meistens buche ich ein kleines Hotel in der Nähe vom Zentrum.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Zug">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 02</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Reisen</div>
+    <div class="karte-word">
+      <span>Zug</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Zug" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Fährst du gern mit dem Zug?</div>
+      <div class="a"><b>Antwort:</b> Ja, bei längeren Reisen fahre ich gern mit dem Zug. Das ist bequem.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Berge">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 03</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Reisen</div>
+    <div class="karte-word">
+      <span>Berge</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Berge" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Fährst du gern in die Berge?</div>
+      <div class="a"><b>Antwort:</b> Ja, im Sommer fahre ich gern in die Berge. Dort wandere ich gern.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Reisebüro">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 04</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Reisen</div>
+    <div class="karte-word">
+      <span>Reisebüro</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Reisebüro" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Buchst du Reisen im Reisebüro oder im Internet?</div>
+      <div class="a"><b>Antwort:</b> Ich buche Reisen meistens im Internet, aber manchmal gehe ich ins Reisebüro.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Meer">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 05</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Reisen</div>
+    <div class="karte-word">
+      <span>Meer</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Meer" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Fährst du im Urlaub gern ans Meer?</div>
+      <div class="a"><b>Antwort:</b> Ja, im Sommer fahre ich gern eine Woche ans Meer.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Urlaub">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 06</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Reisen</div>
+    <div class="karte-word">
+      <span>Urlaub</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Urlaub" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wo machst du am liebsten Urlaub?</div>
+      <div class="a"><b>Antwort:</b> Ich mache am liebsten am Meer Urlaub, zum Beispiel in Italien.</div>
+    </div>
+  </div></div>
+  </section>
+      <section class="candidate b">
+    <div class="candidate-title">Thema: Lernen</div>
+    <div class="cards"><div class="karte" aria-label="Karte Wörterbuch">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 01</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Lernen</div>
+    <div class="karte-word">
+      <span>Wörterbuch</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Wörterbuch" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Benutzt du beim Deutschlernen ein Wörterbuch?</div>
+      <div class="a"><b>Antwort:</b> Ja, ich suche dort neue Wörter.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Computerkurs">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 02</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Lernen</div>
+    <div class="karte-word">
+      <span>Computerkurs</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Computerkurs" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wann hast du deinen Computerkurs?</div>
+      <div class="a"><b>Antwort:</b> Ich habe am Dienstag von 18 bis 20 Uhr Computerkurs.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Internet">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 03</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Lernen</div>
+    <div class="karte-word">
+      <span>Internet</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Internet" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Benutzt du das Internet zum Lernen?</div>
+      <div class="a"><b>Antwort:</b> Ja, ich mache online Übungen und schaue kurze Videos.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Freunde">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 04</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Lernen</div>
+    <div class="karte-word">
+      <span>Freunde</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Freunde" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Lernst du manchmal mit Freunden?</div>
+      <div class="a"><b>Antwort:</b> Ja, am Freitag lernen wir zusammen in der Bibliothek.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Radio">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 05</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Lernen</div>
+    <div class="karte-word">
+      <span>Radio</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Radio" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Hörst du deutsches Radio?</div>
+      <div class="a"><b>Antwort:</b> Ja, ich höre am Morgen auf dem Weg zur Arbeit etwa zehn Minuten deutsches Radio.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Lehrerin">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 06</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Lernen</div>
+    <div class="karte-word">
+      <span>Lehrerin</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Lehrerin" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wie findest du deine Lehrerin?</div>
+      <div class="a"><b>Antwort:</b> Ich finde sie nett. Sie erklärt sehr gut.</div>
+    </div>
+  </div></div>
+  </section>
+    </div>
+    <details>
+    <summary>Hinweis – Gợi ý &amp; hỗ trợ</summary>
+    <div class="inside">
+      <section class="help-section">
+        <h3>Cấu trúc câu hỏi A1</h3>
+        <div class="formula-grid">
+          <div class="formula"><b>W-Frage</b>Wo / Wann / Was / Wie / Wie oft / Welche ... + Verb + du ...?</div>
+          <div class="formula"><b>Ja/Nein-Frage</b>Verb + du + ...?<br>Ví dụ: Fährst du gern mit dem Zug?</div>
+        </div>
+        <div class="help-box" style="margin-top:10px">
+          <b style="color:var(--blue-dark)">Các từ để hỏi thường gặp</b>
+          <div class="w-grid">
+            <div class="w-item"><b>Wie</b> – <span class="w-vn">như thế nào?</span><span class="w-example">Ví dụ: Wie geht es dir?</span></div>
+            <div class="w-item"><b>Was</b> – <span class="w-vn">cái gì? / gì?</span><span class="w-example">Ví dụ: Was machst du am Wochenende?</span></div>
+            <div class="w-item"><b>Wo</b> – <span class="w-vn">ở đâu?</span><span class="w-example">Ví dụ: Wo wohnst du?</span></div>
+            <div class="w-item"><b>Woher</b> – <span class="w-vn">từ đâu?</span><span class="w-example">Ví dụ: Woher kommst du?</span></div>
+            <div class="w-item"><b>Wohin</b> – <span class="w-vn">đi đâu? / đến đâu?</span><span class="w-example">Ví dụ: Wohin fährst du im Urlaub?</span></div>
+            <div class="w-item"><b>Wann</b> – <span class="w-vn">khi nào?</span><span class="w-example">Ví dụ: Wann machst du deine Hausaufgaben?</span></div>
+            <div class="w-item"><b>Wie oft</b> – <span class="w-vn">bao lâu một lần? / thường xuyên thế nào?</span><span class="w-example">Ví dụ: Wie oft gehst du schwimmen?</span></div>
+            <div class="w-item"><b>Wie viel</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ không đếm được hoặc hỏi giá. Ví dụ: Wie viel kostet das?</span></div>
+            <div class="w-item"><b>Wie viele</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ số nhiều đếm được. Ví dụ: Wie viele Geschwister hast du?</span></div>
+            <div class="w-item"><b>Warum</b> – <span class="w-vn">tại sao?</span><span class="w-example">Ví dụ: Warum lernst du Deutsch?</span></div>
+            <div class="w-item"><b>Welche / Welcher / Welches</b> – <span class="w-vn">cái nào? / những ... nào?</span><span class="w-example">Ví dụ: Welche Sprachen lernst du?</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </details>
+  </section><section class="sheet " id="set3">
+    <div class="task-head">
+      <div>Sprechen Teil 2<br>Um Informationen bitten und Informationen geben.</div>
+      <div class="points">(ca. 5 Min.)</div>
+    </div>
+    <div class="candidates">
+      <section class="candidate a">
+    <div class="candidate-title">Thema: Einkaufen</div>
+    <div class="cards"><div class="karte" aria-label="Karte Zeitung">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 01</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Einkaufen</div>
+    <div class="karte-word">
+      <span>Zeitung</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Zeitung" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Kaufst du oft eine Zeitung?</div>
+      <div class="a"><b>Antwort:</b> Nein, ich kaufe selten eine Zeitung. Ich lese die Nachrichten meistens im Internet.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Kasse">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 02</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Einkaufen</div>
+    <div class="karte-word">
+      <span>Kasse</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Kasse" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wie bezahlst du an der Kasse?</div>
+      <div class="a"><b>Antwort:</b> Ich bezahle meistens mit Karte.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Obst">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 03</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Einkaufen</div>
+    <div class="karte-word">
+      <span>Obst</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Obst" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Welches Obst kaufst du gern?</div>
+      <div class="a"><b>Antwort:</b> Ich kaufe gern Äpfel und Bananen.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Schuhe">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 04</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Einkaufen</div>
+    <div class="karte-word">
+      <span>Schuhe</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Schuhe" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wo kaufst du normalerweise Schuhe?</div>
+      <div class="a"><b>Antwort:</b> Ich kaufe Schuhe meistens im Einkaufszentrum. Dort kann ich sie anprobieren.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Buch">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 05</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Einkaufen</div>
+    <div class="karte-word">
+      <span>Buch</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Buch" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wo kaufst du Bücher?</div>
+      <div class="a"><b>Antwort:</b> Ich kaufe Bücher meistens im Buchladen in der Innenstadt oder online.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Stadtplan">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 06</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Einkaufen</div>
+    <div class="karte-word">
+      <span>Stadtplan</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Stadtplan" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Brauchst du auf Reisen manchmal einen Stadtplan?</div>
+      <div class="a"><b>Antwort:</b> Ja, in einer neuen Stadt benutze ich manchmal einen Stadtplan.</div>
+    </div>
+  </div></div>
+  </section>
+      <section class="candidate b">
+    <div class="candidate-title">Thema: Freizeit</div>
+    <div class="cards"><div class="karte" aria-label="Karte Fußball">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 01</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Freizeit</div>
+    <div class="karte-word">
+      <span>Fußball</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Fußball" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Spielst du Fußball?</div>
+      <div class="a"><b>Antwort:</b> Ja, ich spiele am Samstag mit Freunden im Park Fußball.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Computer spielen">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 02</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Freizeit</div>
+    <div class="karte-word">
+      <span>Computer spielen</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Computer spielen" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wie oft spielst du Computerspiele?</div>
+      <div class="a"><b>Antwort:</b> Ich spiele zwei- oder dreimal pro Woche, meistens am Abend.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte kochen">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 03</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Freizeit</div>
+    <div class="karte-word">
+      <span>kochen</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte kochen" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Kochst du oft?</div>
+      <div class="a"><b>Antwort:</b> Ja, ich koche fast jeden Abend. Besonders gern koche ich Reisgerichte.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Ins Kino gehen">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 04</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Freizeit</div>
+    <div class="karte-word">
+      <span>Ins Kino gehen</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Ins Kino gehen" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Wie oft gehst du ins Kino?</div>
+      <div class="a"><b>Antwort:</b> Ich gehe ungefähr einmal im Monat ins Kino.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte Tennis spielen">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 05</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Freizeit</div>
+    <div class="karte-word">
+      <span>Tennis spielen</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte Tennis spielen" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Spielst du Tennis?</div>
+      <div class="a"><b>Antwort:</b> Ja, ich spiele jeden Mittwoch mit einem Freund Tennis.</div>
+    </div>
+  </div><div class="karte" aria-label="Karte fernsehen">
+    <div class="karte-top"><span>Start Deutsch 1</span><span>Sprechen Teil 2</span></div>
+    <div class="karte-meta"><span>Übungssatz 06</span><span>Kandidatenblätter</span></div>
+    <div class="karte-theme">Thema: Freizeit</div>
+    <div class="karte-word">
+      <span>fernsehen</span>
+      <button class="card-help-toggle" type="button" aria-expanded="false" aria-label="Gợi ý cho Karte fernsehen" title="Gợi ý câu hỏi và câu trả lời" onclick="toggleCardHelp(this)">💡</button>
+    </div>
+    <div class="card-help" hidden="">
+      <div class="q"><b>Frage:</b> Was schaust du gern im Fernsehen?</div>
+      <div class="a"><b>Antwort:</b> Ich schaue gern Filme und manchmal die Nachrichten.</div>
+    </div>
+  </div></div>
+  </section>
+    </div>
+    <details>
+    <summary>Hinweis – Gợi ý &amp; hỗ trợ</summary>
+    <div class="inside">
+      <section class="help-section">
+        <h3>Cấu trúc câu hỏi A1</h3>
+        <div class="formula-grid">
+          <div class="formula"><b>W-Frage</b>Wo / Wann / Was / Wie / Wie oft / Welche ... + Verb + du ...?</div>
+          <div class="formula"><b>Ja/Nein-Frage</b>Verb + du + ...?<br>Ví dụ: Fährst du gern mit dem Zug?</div>
+        </div>
+        <div class="help-box" style="margin-top:10px">
+          <b style="color:var(--blue-dark)">Các từ để hỏi thường gặp</b>
+          <div class="w-grid">
+            <div class="w-item"><b>Wie</b> – <span class="w-vn">như thế nào?</span><span class="w-example">Ví dụ: Wie geht es dir?</span></div>
+            <div class="w-item"><b>Was</b> – <span class="w-vn">cái gì? / gì?</span><span class="w-example">Ví dụ: Was machst du am Wochenende?</span></div>
+            <div class="w-item"><b>Wo</b> – <span class="w-vn">ở đâu?</span><span class="w-example">Ví dụ: Wo wohnst du?</span></div>
+            <div class="w-item"><b>Woher</b> – <span class="w-vn">từ đâu?</span><span class="w-example">Ví dụ: Woher kommst du?</span></div>
+            <div class="w-item"><b>Wohin</b> – <span class="w-vn">đi đâu? / đến đâu?</span><span class="w-example">Ví dụ: Wohin fährst du im Urlaub?</span></div>
+            <div class="w-item"><b>Wann</b> – <span class="w-vn">khi nào?</span><span class="w-example">Ví dụ: Wann machst du deine Hausaufgaben?</span></div>
+            <div class="w-item"><b>Wie oft</b> – <span class="w-vn">bao lâu một lần? / thường xuyên thế nào?</span><span class="w-example">Ví dụ: Wie oft gehst du schwimmen?</span></div>
+            <div class="w-item"><b>Wie viel</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ không đếm được hoặc hỏi giá. Ví dụ: Wie viel kostet das?</span></div>
+            <div class="w-item"><b>Wie viele</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ số nhiều đếm được. Ví dụ: Wie viele Geschwister hast du?</span></div>
+            <div class="w-item"><b>Warum</b> – <span class="w-vn">tại sao?</span><span class="w-example">Ví dụ: Warum lernst du Deutsch?</span></div>
+            <div class="w-item"><b>Welche / Welcher / Welches</b> – <span class="w-vn">cái nào? / những ... nào?</span><span class="w-example">Ví dụ: Welche Sprachen lernst du?</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </details>
+  </section></div>
 </main>
 <script>
 const THEME_CARDS = {
@@ -93,77 +856,77 @@ const THEME_CARDS = {
 };
 
 const EXAMPLES = {
-  "Arbeitszeit":["Wann arbeiten Sie?","Ich arbeite von Montag bis Freitag, von 8 bis 17 Uhr."],
-  "Kollegen":["Wie viele Kollegen haben Sie?","Ich habe fünf Kollegen. Wir arbeiten im selben Büro."],
-  "Spaß":["Macht Ihnen Ihre Arbeit Spaß?","Ja, meine Arbeit macht mir Spaß. Ich arbeite gern mit Menschen."],
-  "Pause":["Wann machen Sie Mittagspause?","Ich mache um 12 Uhr Mittagspause."],
-  "Arbeitsplatz":["Wo arbeiten Sie?","Ich arbeite in einem Büro in der Innenstadt."],
-  "Aufgaben":["Was machen Sie bei der Arbeit?","Ich schreibe E-Mails und telefoniere mit Kunden."],
+  "Arbeitszeit":["Wann arbeitest du?","Ich arbeite von Montag bis Freitag, von 8 bis 17 Uhr."],
+  "Kollegen":["Sind deine Kollegen nett?","Ja, meine Kollegen sind sehr nett, sympathisch und hilfsbereit. Wir arbeiten zusammen in einem Büro in Hanoi."],
+  "Spaß":["Macht dir deine Arbeit Spaß?","Ja, meine Arbeit macht mir Spaß. Ich arbeite gern mit Menschen."],
+  "Pause":["Wann machst du Mittagspause?","Ich mache um 12 Uhr Mittagspause."],
+  "Arbeitsplatz":["Wo arbeitest du?","Ich arbeite in einem Büro in der Innenstadt."],
+  "Aufgaben":["Was machst du bei der Arbeit?","Ich schreibe E-Mails und telefoniere mit Kunden."],
 
-  "Sonntag":["Was machen Sie am Sonntag?","Am Sonntag schlafe ich länger und treffe Freunde."],
-  "Frühstück":["Was frühstücken Sie am Wochenende?","Am Wochenende esse ich Brot mit Ei und trinke Kaffee."],
-  "Sport@Wochenende":["Machen Sie am Wochenende Sport?","Ja, ich spiele samstags mit Freunden Fußball."],
-  "Familie":["Was machen Sie mit Ihrer Familie am Wochenende?","Am Wochenende koche ich mit meiner Familie und wir essen zusammen."],
-  "Ausflug":["Machen Sie am Wochenende gern Ausflüge?","Ja, wir fahren oft an einen See oder aufs Land."],
-  "Bücher":["Welche Bücher lesen Sie gern?","Ich lese gern Krimis, meistens am Sonntagabend."],
+  "Sonntag":["Was machst du am Sonntag?","Am Sonntag schlafe ich länger und treffe Freunde."],
+  "Frühstück":["Was frühstückst du am Wochenende?","Am Wochenende esse ich Brot mit Ei und trinke Kaffee."],
+  "Sport@Wochenende":["Machst du am Wochenende Sport?","Ja, ich spiele am Samstag mit Freunden Fußball."],
+  "Familie":["Was machst du mit deiner Familie am Wochenende?","Am Wochenende koche ich mit meiner Familie und wir essen zusammen."],
+  "Ausflug":["Machst du gern am Wochenende einen Ausflug?","Ja, ich mache am Wochenende gern einen Ausflug mit dem Auto, zusammen mit meiner Freundin Sylvia."],
+  "Bücher":["Was liest du gern?","Ich lese gern Krimis und Comics."],
 
-  "Lieblingssport":["Was ist Ihr Lieblingssport?","Mein Lieblingssport ist Fußball."],
-  "schwimmen":["Wie oft gehen Sie schwimmen?","Ich gehe einmal pro Woche schwimmen."],
-  "Wochenende@Sport":["Machen Sie am Wochenende Sport?","Ja, ich fahre sonntags oft mit dem Fahrrad."],
-  "Abend":["Machen Sie abends Sport?","Ja, ich gehe zweimal pro Woche nach der Arbeit joggen."],
-  "Ball":["Spielen Sie gern Fußball?","Ja, ich spiele jeden Samstag mit Freunden Fußball."],
-  "Fahrrad":["Fahren Sie oft Fahrrad?","Ja, ich fahre fast jeden Tag mit dem Fahrrad zur Arbeit."],
+  "Lieblingssport":["Was ist dein Lieblingssport?","Mein Lieblingssport ist Fußball."],
+  "schwimmen":["Wie oft gehst du schwimmen?","Ich gehe einmal pro Woche schwimmen."],
+  "Wochenende@Sport":["Machst du am Wochenende Sport?","Ja, ich fahre am Sonntag oft mit dem Fahrrad."],
+  "Abend":["Machst du am Abend Sport?","Ja, ich gehe zweimal pro Woche nach der Arbeit joggen."],
+  "Ball":["Spielst du gern Fußball?","Ja, ich spiele jeden Samstag mit Freunden Fußball."],
+  "Fahrrad":["Fährst du oft Fahrrad?","Ja, ich fahre fast jeden Tag mit dem Fahrrad zur Arbeit."],
 
-  "Freunde@Schule":["Treffen Sie Ihre Freunde auch nach der Schule?","Ja, wir treffen uns oft nachmittags im Café."],
-  "Lehrer":["Wie finden Sie Ihren Lehrer?","Ich finde ihn nett. Er erklärt sehr gut."],
-  "Computer@Schule":["Benutzen Sie in der Schule einen Computer?","Ja, wir schreiben Texte und machen Übungen am Computer."],
-  "Sprachen":["Welche Sprachen lernen Sie in der Schule?","Ich lerne Deutsch und Englisch."],
-  "Essen":["Wo essen Sie in der Schule?","Ich esse mittags in der Kantine."],
-  "Hausaufgaben":["Wann machen Sie Ihre Hausaufgaben?","Ich mache meine Hausaufgaben nach dem Abendessen."],
+  "Freunde@Schule":["Triffst du deine Freunde auch nach der Schule?","Ja, wir treffen uns oft nachmittags im Café."],
+  "Lehrer":["Wie findest du deinen Lehrer?","Ich finde ihn nett. Er erklärt sehr gut."],
+  "Computer@Schule":["Benutzt du in der Schule einen Computer?","Ja, wir schreiben Texte und machen Übungen am Computer."],
+  "Sprachen":["Welche Sprachen lernst du in der Schule?","Ich lerne Deutsch und Englisch."],
+  "Essen":["Wo isst du in der Schule?","Ich esse mittags in der Kantine."],
+  "Hausaufgaben":["Wann machst du deine Hausaufgaben?","Ich mache meine Hausaufgaben nach dem Abendessen."],
 
-  "Hotel":["Buchen Sie im Urlaub ein Hotel?","Ja, meistens buche ich ein kleines Hotel in der Nähe vom Zentrum."],
-  "Zug":["Fahren Sie gern mit dem Zug?","Ja, bei längeren Reisen fahre ich gern mit dem Zug. Das ist bequem."],
-  "Berge":["Fahren Sie gern in die Berge?","Ja, im Sommer fahre ich gern in die Berge. Dort wandere ich gern."],
-  "Reisebüro":["Buchen Sie Reisen im Reisebüro oder im Internet?","Ich buche Reisen meistens im Internet, aber manchmal gehe ich ins Reisebüro."],
-  "Meer":["Fahren Sie im Urlaub gern ans Meer?","Ja, im Sommer fahre ich gern eine Woche ans Meer."],
-  "Urlaub":["Wo machen Sie am liebsten Urlaub?","Ich mache am liebsten am Meer Urlaub, zum Beispiel in Italien."],
+  "Hotel":["Buchst du im Urlaub ein Hotel?","Ja, meistens buche ich ein kleines Hotel in der Nähe vom Zentrum."],
+  "Zug":["Fährst du gern mit dem Zug?","Ja, bei längeren Reisen fahre ich gern mit dem Zug. Das ist bequem."],
+  "Berge":["Fährst du gern in die Berge?","Ja, im Sommer fahre ich gern in die Berge. Dort wandere ich gern."],
+  "Reisebüro":["Buchst du Reisen im Reisebüro oder im Internet?","Ich buche Reisen meistens im Internet, aber manchmal gehe ich ins Reisebüro."],
+  "Meer":["Fährst du im Urlaub gern ans Meer?","Ja, im Sommer fahre ich gern eine Woche ans Meer."],
+  "Urlaub":["Wo machst du am liebsten Urlaub?","Ich mache am liebsten am Meer Urlaub, zum Beispiel in Italien."],
 
-  "Wörterbuch":["Benutzen Sie beim Deutschlernen ein Wörterbuch?","Ja, ich suche dort neue Wörter."],
-  "Computerkurs":["Wann haben Sie Ihren Computerkurs?","Ich habe dienstags von 18 bis 20 Uhr Computerkurs."],
-  "Internet":["Benutzen Sie das Internet zum Lernen?","Ja, ich mache online Übungen und schaue kurze Videos."],
-  "Freunde@Lernen":["Lernen Sie manchmal mit Freunden?","Ja, freitags lernen wir zusammen in der Bibliothek."],
-  "Radio":["Hören Sie deutsches Radio?","Ja, ich höre morgens auf dem Weg zur Arbeit etwa zehn Minuten deutsches Radio."],
-  "Lehrerin":["Wie finden Sie Ihre Lehrerin?","Ich finde sie nett. Sie erklärt sehr gut."],
+  "Wörterbuch":["Benutzt du beim Deutschlernen ein Wörterbuch?","Ja, ich suche dort neue Wörter."],
+  "Computerkurs":["Wann hast du deinen Computerkurs?","Ich habe am Dienstag von 18 bis 20 Uhr Computerkurs."],
+  "Internet":["Benutzt du das Internet zum Lernen?","Ja, ich mache online Übungen und schaue kurze Videos."],
+  "Freunde@Lernen":["Lernst du manchmal mit Freunden?","Ja, am Freitag lernen wir zusammen in der Bibliothek."],
+  "Radio":["Hörst du deutsches Radio?","Ja, ich höre am Morgen auf dem Weg zur Arbeit etwa zehn Minuten deutsches Radio."],
+  "Lehrerin":["Wie findest du deine Lehrerin?","Ich finde sie nett. Sie erklärt sehr gut."],
 
-  "Zeitung":["Kaufen Sie oft eine Zeitung?","Nein, ich kaufe selten eine Zeitung. Ich lese die Nachrichten meistens im Internet."],
-  "Kasse":["Wie bezahlen Sie an der Kasse?","Ich bezahle meistens mit Karte."],
-  "Obst":["Welches Obst kaufen Sie gern?","Ich kaufe gern Äpfel und Bananen."],
-  "Schuhe":["Wo kaufen Sie normalerweise Schuhe?","Ich kaufe Schuhe meistens im Einkaufszentrum. Dort kann ich sie anprobieren."],
-  "Buch":["Wo kaufen Sie Bücher?","Ich kaufe Bücher meistens im Buchladen in der Innenstadt oder online."],
-  "Stadtplan":["Brauchen Sie auf Reisen manchmal einen Stadtplan?","Ja, in einer neuen Stadt benutze ich manchmal einen Stadtplan."],
-  "Supermarkt":["Wie oft gehen Sie in den Supermarkt?","Ich gehe zwei- oder dreimal pro Woche in den Supermarkt."],
-  "kaufen":["Was kaufen Sie jede Woche?","Ich kaufe jede Woche Obst, Gemüse, Milch und Brot."],
-  "Saft":["Welchen Saft kaufen Sie am liebsten?","Am liebsten kaufe ich Orangensaft."],
+  "Zeitung":["Kaufst du oft eine Zeitung?","Nein, ich kaufe selten eine Zeitung. Ich lese die Nachrichten meistens im Internet."],
+  "Kasse":["Wie bezahlst du an der Kasse?","Ich bezahle meistens mit Karte."],
+  "Obst":["Welches Obst kaufst du gern?","Ich kaufe gern Äpfel und Bananen."],
+  "Schuhe":["Wo kaufst du normalerweise Schuhe?","Ich kaufe Schuhe meistens im Einkaufszentrum. Dort kann ich sie anprobieren."],
+  "Buch":["Wo kaufst du Bücher?","Ich kaufe Bücher meistens im Buchladen in der Innenstadt oder online."],
+  "Stadtplan":["Brauchst du auf Reisen manchmal einen Stadtplan?","Ja, in einer neuen Stadt benutze ich manchmal einen Stadtplan."],
+  "Supermarkt":["Wie oft gehst du in den Supermarkt?","Ich gehe zwei- oder dreimal pro Woche in den Supermarkt."],
+  "kaufen":["Was kaufst du jede Woche?","Ich kaufe jede Woche Obst, Gemüse, Milch und Brot."],
+  "Saft":["Welchen Saft kaufst du am liebsten?","Am liebsten kaufe ich Orangensaft."],
 
-  "Schule@Stadt":["Wo ist Ihre Schule?","Meine Schule ist in der Nähe vom Bahnhof."],
-  "Taxi":["Wann nehmen Sie ein Taxi?","Ich nehme ein Taxi, wenn es spät ist oder ich viel Gepäck habe."],
-  "S-Bahn":["Fahren Sie oft mit der S-Bahn?","Ja, ich fahre jeden Morgen mit der S-Bahn zur Arbeit."],
-  "Post":["Gehen Sie oft zur Post?","Nein, nur ein- oder zweimal im Monat."],
-  "Buchladen":["Gibt es in Ihrer Nähe einen Buchladen?","Ja, in der Hauptstraße gibt es einen Buchladen, etwa fünf Minuten zu Fuß von hier."],
-  "schließen":["Wann schließen die Geschäfte bei Ihnen?","Die meisten Geschäfte schließen um 20 Uhr."],
-  "Kirche":["Gibt es in Ihrer Stadt eine alte Kirche?","Ja, im Zentrum neben dem Marktplatz gibt es eine alte Kirche."],
+  "Schule@Stadt":["Wo ist deine Schule?","Meine Schule ist in der Nähe vom Bahnhof."],
+  "Taxi":["Wann nimmst du ein Taxi?","Ich nehme ein Taxi, wenn es spät ist oder ich viel Gepäck habe."],
+  "S-Bahn":["Fährst du oft mit der S-Bahn?","Ja, ich fahre jeden Morgen mit der S-Bahn zur Arbeit."],
+  "Post":["Gehst du oft zur Post?","Nein, nur ein- oder zweimal im Monat."],
+  "Buchladen":["Gibt es in deiner Nähe einen Buchladen?","Ja, in der Hauptstraße gibt es einen Buchladen, etwa fünf Minuten zu Fuß von hier."],
+  "schließen":["Wann schließen die Geschäfte bei dir?","Die meisten Geschäfte schließen um 20 Uhr."],
+  "Kirche":["Gibt es in deiner Stadt eine alte Kirche?","Ja, im Zentrum neben dem Marktplatz gibt es eine alte Kirche."],
   "Rathaus":["Wo ist das Rathaus?","Das Rathaus ist direkt am Marktplatz, gegenüber dem Museum."],
-  "Museum":["Gehen Sie manchmal ins Museum?","Ja, ich gehe ungefähr einmal im Monat ins Museum."],
+  "Museum":["Gehst du manchmal ins Museum?","Ja, ich gehe ungefähr einmal im Monat ins Museum."],
 
-  "Fußball":["Spielen Sie Fußball?","Ja, ich spiele samstags mit Freunden im Park Fußball."],
-  "Computer spielen":["Wie oft spielen Sie Computerspiele?","Ich spiele zwei- oder dreimal pro Woche, meistens abends."],
-  "kochen":["Kochen Sie oft?","Ja, ich koche fast jeden Abend. Besonders gern koche ich Reisgerichte."],
-  "Ins Kino gehen":["Wie oft gehen Sie ins Kino?","Ich gehe ungefähr einmal im Monat ins Kino."],
-  "Tennis spielen":["Spielen Sie Tennis?","Ja, ich spiele jeden Mittwoch mit einem Freund Tennis."],
-  "fernsehen":["Was schauen Sie gern im Fernsehen?","Ich schaue gern Filme und manchmal die Nachrichten."],
-  "tanzen":["Gehen Sie gern tanzen?","Ja, ich gehe am Wochenende manchmal mit Freunden tanzen."],
-  "Buch lesen":["Wann lesen Sie Bücher?","Ich lese meistens abends vor dem Schlafengehen."],
-  "Musik hören":["Welche Musik hören Sie gern?","Ich höre gern Popmusik, besonders beim Kochen."]
+  "Fußball":["Spielst du Fußball?","Ja, ich spiele am Samstag mit Freunden im Park Fußball."],
+  "Computer spielen":["Wie oft spielst du Computerspiele?","Ich spiele zwei- oder dreimal pro Woche, meistens am Abend."],
+  "kochen":["Kochst du oft?","Ja, ich koche fast jeden Abend. Besonders gern koche ich Reisgerichte."],
+  "Ins Kino gehen":["Wie oft gehst du ins Kino?","Ich gehe ungefähr einmal im Monat ins Kino."],
+  "Tennis spielen":["Spielst du Tennis?","Ja, ich spiele jeden Mittwoch mit einem Freund Tennis."],
+  "fernsehen":["Was schaust du gern im Fernsehen?","Ich schaue gern Filme und manchmal die Nachrichten."],
+  "tanzen":["Gehst du gern tanzen?","Ja, ich gehe am Wochenende manchmal mit Freunden tanzen."],
+  "Buch lesen":["Wann liest du Bücher?","Ich lese meistens am Abend vor dem Schlafengehen."],
+  "Musik hören":["Welche Musik hörst du gern?","Ich höre gern Popmusik, besonders beim Kochen."]
 };
 
 const SETS = [
@@ -201,7 +964,7 @@ function cardHtml(theme,word,idx){
 
 function candidateHtml(candidate,theme,words){
   return `<section class="candidate ${candidate.toLowerCase()}">
-    <div class="candidate-title">Kandidat ${candidate} · Thema: ${theme}</div>
+    <div class="candidate-title">Thema: ${theme}</div>
     <div class="cards">${words.map((w,i)=>cardHtml(theme,w,i)).join('')}</div>
   </section>`;
 }
@@ -211,29 +974,25 @@ function hintHtml(set,aWords,bWords){
     <summary>Hinweis – Gợi ý &amp; hỗ trợ</summary>
     <div class="inside">
       <section class="help-section">
-        <h3>Dịch đề bài</h3>
-        <div class="help-box">Bạn có <b>6 thẻ</b>. Hãy <b>chọn 4 thẻ</b> để hỏi bạn cùng thi. Với mỗi thẻ đã chọn, hãy đặt <b>1 câu hỏi</b> và nghe câu trả lời. Sau đó, hãy trả lời <b>4 câu hỏi</b> của bạn cùng thi. Kandidat A và Kandidat B dùng <b>hai chủ đề khác nhau</b>.</div>
-      </section>
-      <section class="help-section">
         <h3>Cấu trúc câu hỏi A1</h3>
         <div class="formula-grid">
-          <div class="formula"><b>W-Frage</b>Wo / Wann / Was / Wie / Wie oft / Welche ... + Verb + Sie ...?</div>
-          <div class="formula"><b>Ja/Nein-Frage</b>Verb + Sie + ...?<br>Ví dụ: Fahren Sie gern mit dem Zug?</div>
+          <div class="formula"><b>W-Frage</b>Wo / Wann / Was / Wie / Wie oft / Welche ... + Verb + du ...?</div>
+          <div class="formula"><b>Ja/Nein-Frage</b>Verb + du + ...?<br>Ví dụ: Fährst du gern mit dem Zug?</div>
         </div>
         <div class="help-box" style="margin-top:10px">
           <b style="color:var(--blue-dark)">Các từ để hỏi thường gặp</b>
           <div class="w-grid">
-            <div class="w-item"><b>Wie</b> – <span class="w-vn">như thế nào?</span><span class="w-example">Ví dụ: Wie geht es Ihnen?</span></div>
-            <div class="w-item"><b>Was</b> – <span class="w-vn">cái gì? / gì?</span><span class="w-example">Ví dụ: Was machen Sie am Wochenende?</span></div>
-            <div class="w-item"><b>Wo</b> – <span class="w-vn">ở đâu?</span><span class="w-example">Ví dụ: Wo wohnen Sie?</span></div>
-            <div class="w-item"><b>Woher</b> – <span class="w-vn">từ đâu?</span><span class="w-example">Ví dụ: Woher kommen Sie?</span></div>
-            <div class="w-item"><b>Wohin</b> – <span class="w-vn">đi đâu? / đến đâu?</span><span class="w-example">Ví dụ: Wohin fahren Sie im Urlaub?</span></div>
-            <div class="w-item"><b>Wann</b> – <span class="w-vn">khi nào?</span><span class="w-example">Ví dụ: Wann machen Sie Ihre Hausaufgaben?</span></div>
-            <div class="w-item"><b>Wie oft</b> – <span class="w-vn">bao lâu một lần? / thường xuyên thế nào?</span><span class="w-example">Ví dụ: Wie oft gehen Sie schwimmen?</span></div>
+            <div class="w-item"><b>Wie</b> – <span class="w-vn">như thế nào?</span><span class="w-example">Ví dụ: Wie geht es dir?</span></div>
+            <div class="w-item"><b>Was</b> – <span class="w-vn">cái gì? / gì?</span><span class="w-example">Ví dụ: Was machst du am Wochenende?</span></div>
+            <div class="w-item"><b>Wo</b> – <span class="w-vn">ở đâu?</span><span class="w-example">Ví dụ: Wo wohnst du?</span></div>
+            <div class="w-item"><b>Woher</b> – <span class="w-vn">từ đâu?</span><span class="w-example">Ví dụ: Woher kommst du?</span></div>
+            <div class="w-item"><b>Wohin</b> – <span class="w-vn">đi đâu? / đến đâu?</span><span class="w-example">Ví dụ: Wohin fährst du im Urlaub?</span></div>
+            <div class="w-item"><b>Wann</b> – <span class="w-vn">khi nào?</span><span class="w-example">Ví dụ: Wann machst du deine Hausaufgaben?</span></div>
+            <div class="w-item"><b>Wie oft</b> – <span class="w-vn">bao lâu một lần? / thường xuyên thế nào?</span><span class="w-example">Ví dụ: Wie oft gehst du schwimmen?</span></div>
             <div class="w-item"><b>Wie viel</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ không đếm được hoặc hỏi giá. Ví dụ: Wie viel kostet das?</span></div>
-            <div class="w-item"><b>Wie viele</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ số nhiều đếm được. Ví dụ: Wie viele Kinder haben Sie?</span></div>
-            <div class="w-item"><b>Warum</b> – <span class="w-vn">tại sao?</span><span class="w-example">Ví dụ: Warum lernen Sie Deutsch?</span></div>
-            <div class="w-item"><b>Welche / Welcher / Welches</b> – <span class="w-vn">cái nào? / những ... nào?</span><span class="w-example">Ví dụ: Welche Sprachen lernen Sie?</span></div>
+            <div class="w-item"><b>Wie viele</b> – <span class="w-vn">bao nhiêu?</span> <span class="w-example">Dùng với danh từ số nhiều đếm được. Ví dụ: Wie viele Geschwister hast du?</span></div>
+            <div class="w-item"><b>Warum</b> – <span class="w-vn">tại sao?</span><span class="w-example">Ví dụ: Warum lernst du Deutsch?</span></div>
+            <div class="w-item"><b>Welche / Welcher / Welches</b> – <span class="w-vn">cái nào? / những ... nào?</span><span class="w-example">Ví dụ: Welche Sprachen lernst du?</span></div>
           </div>
         </div>
       </section>
@@ -247,9 +1006,8 @@ function setHtml(set,index){
   return `<section class="sheet ${index===0?'active':''}" id="set${index}">
     <div class="task-head">
       <div>Sprechen Teil 2<br>Um Informationen bitten und Informationen geben.</div>
-      <div class="points">(ca. 3 Min.)</div>
+      <div class="points">(ca. 5 Min.)</div>
     </div>
-    <p class="prompt"><b>Sie haben sechs Karten. Wählen Sie vier Karten aus.</b> Stellen Sie zu jeder ausgewählten Karte eine Frage und beantworten Sie vier Fragen Ihres Partners / Ihrer Partnerin.</p>
     <div class="candidates">
       ${candidateHtml('A',set.aTheme,aWords)}
       ${candidateHtml('B',set.bTheme,bWords)}
@@ -270,10 +1028,114 @@ function toggleCardHelp(button){
   button.setAttribute('aria-expanded',String(willOpen));
 }
 
+const STORAGE_KEY='StartDeutsch_Sprechen_A1_Teil2_Bearbeiten_v3_NO_KANDIDAT';
+let saveTimer=null;
+
+function cleanEditableHtml(el){
+  const clone=el.cloneNode(true);
+  clone.querySelectorAll('[contenteditable]').forEach(node=>node.removeAttribute('contenteditable'));
+  clone.querySelectorAll('[spellcheck]').forEach(node=>node.removeAttribute('spellcheck'));
+  return clone.innerHTML;
+}
+
+function saveEdits(){
+  try{
+    const state={
+      pageTitle:document.getElementById('pageTitle')?.innerHTML || '',
+      sets:cleanEditableHtml(document.getElementById('sets')),
+      savedAt:new Date().toISOString()
+    };
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  }catch(err){
+    console.warn('Không thể lưu thay đổi:',err);
+  }
+}
+
+function scheduleSave(){
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(saveEdits,250);
+}
+
+function restoreEdits(){
+  try{
+    const raw=localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    const state=JSON.parse(raw);
+    if(state.pageTitle!==undefined) document.getElementById('pageTitle').innerHTML=state.pageTitle;
+    if(state.sets) document.getElementById('sets').innerHTML=state.sets;
+  }catch(err){
+    console.warn('Không thể khôi phục thay đổi:',err);
+  }
+}
+
+function toggleEditMode(){
+  const btn=document.getElementById('editBtn');
+  const turningOn=!document.body.classList.contains('editing');
+  document.body.classList.toggle('editing',turningOn);
+
+  const selectors=[
+    '#pageTitle',
+    '.task-head > div',
+    '.candidate-title',
+    '.karte-top span',
+    '.karte-meta span',
+    '.karte-theme',
+    '.karte-word > span',
+    '.card-help .q',
+    '.card-help .a',
+    'details h3',
+    '.help-box',
+    '.formula',
+    '.w-item'
+  ];
+  document.querySelectorAll(selectors.join(',')).forEach(el=>{
+    el.contentEditable=turningOn ? 'true' : 'false';
+    el.spellcheck=false;
+  });
+
+  if(!turningOn) saveEdits();
+  btn.textContent=turningOn ? 'Fertig' : 'Bearbeiten';
+  btn.classList.toggle('active',turningOn);
+}
+
 function render(){
   document.getElementById('tabs').innerHTML=SETS.map((s,i)=>`<button class="tab ${i===0?'active':''}" type="button" onclick="showSet(${i})">${s.label}</button>`).join('');
   document.getElementById('sets').innerHTML=SETS.map(setHtml).join('');
+  restoreEdits();
 }
+
+function exportHtml(){
+  saveEdits();
+
+  const clone=document.documentElement.cloneNode(true);
+  clone.querySelector('body')?.classList.remove('editing');
+  clone.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
+  clone.querySelectorAll('[spellcheck]').forEach(el=>el.removeAttribute('spellcheck'));
+
+  const editBtn=clone.querySelector('#editBtn');
+  if(editBtn){
+    editBtn.textContent='Bearbeiten';
+    editBtn.classList.remove('active');
+  }
+
+  const html='<!DOCTYPE html>\n'+clone.outerHTML;
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const now=new Date();
+  const stamp=[now.getFullYear(),String(now.getMonth()+1).padStart(2,'0'),String(now.getDate()).padStart(2,'0')].join('');
+  a.href=url;
+  a.download=`StartDeutsch_Sprechen_A1_Teil2_${stamp}.html`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+document.addEventListener('input',e=>{
+  if(document.body.classList.contains('editing') && e.target.closest('[contenteditable="true"]')) scheduleSave();
+});
+window.addEventListener('beforeunload',saveEdits);
 
 function showSet(i){
   document.querySelectorAll('.sheet').forEach((el,idx)=>el.classList.toggle('active',idx===i));
@@ -281,7 +1143,10 @@ function showSet(i){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-render();
+if(!document.getElementById('sets').children.length){
+  render();
+}
 </script>
-</body>
-</html>
+
+
+</body></html>
